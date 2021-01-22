@@ -6,10 +6,10 @@ const fetch = require("node-fetch");
 app.use(express.json())
 const csvF = async(req, res) => {
    
-        const {base, currency} = req.query
+        const {base, money} = req.query
 
     try{
-        await fetch(`https://api.exchangeratesapi.io/latest?base=${ base }&symbols=${ currency }`)
+        await fetch(`https://api.exchangeratesapi.io/latest?base=${ base }&symbols=${ money }`)
         .then(res => res.json())
         .then(results => res.send({result:results}));
     }catch (error){
