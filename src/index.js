@@ -11,9 +11,12 @@ const csvF = async(req, res) => {
     try{
         await fetch(`https://api.exchangeratesapi.io/latest?base=${ base }&symbols=${ money }`)
         .then(res => res.json())
-        .then(results => res.send({result:results}));
+        .then(results => res.status(200).send({result:results}));
     }catch (error){
-        console.log(error)
+        return res.status(400).send({
+            error:error.message,
+            message: 'request unsuccessful'
+        })
     }
   
     
